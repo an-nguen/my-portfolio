@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+  private birthDate = new Date(1999, 12, 21)
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getYearOld(): number {
+    let now = new Date();
+    return  now.getFullYear() - this.birthDate.getFullYear()
+  }
 }

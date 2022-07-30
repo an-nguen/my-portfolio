@@ -1,6 +1,14 @@
 <div class="card">
-  <div class="section-pictures"></div>
+  <div class="project-title">Проект - {{ projectName }}</div>
   <div class="section-desc">
-    {{ description }}
+    <ng-content></ng-content>
+  </div>
+  <div class="section-pictures">
+    <span *ngFor="let pic of pictures" class="image-container">
+      <img width="800px" [src]="pic.path" alt="Здесь должно быть изображение" />
+      <span class="image-description">
+        {{ pic.description }}
+      </span>
+    </span>
   </div>
 </div>
