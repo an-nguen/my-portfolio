@@ -7,6 +7,7 @@ import { ProjectCardComponent } from './project-card/project-card.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { AboutComponent } from './about/about.component';
 import { MainViewComponent } from './main-view/main-view.component';
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 @NgModule({
   declarations: [
@@ -14,11 +15,13 @@ import { MainViewComponent } from './main-view/main-view.component';
     ProjectCardComponent,
     ProjectListComponent,
     AboutComponent,
-    MainViewComponent
+    MainViewComponent,
+
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
+    CdkMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

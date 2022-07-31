@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-view',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainViewComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+
+  }
 
   ngOnInit(): void {
   }

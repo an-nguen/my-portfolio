@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-portfolio';
+
+  layoutChanges?: Observable<BreakpointState>
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.layoutChanges = breakpointObserver.observe([
+      Breakpoints.XSmall
+    ])
+  }
 }
