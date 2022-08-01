@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ImageViewerService } from '../image-viewer.service';
 
 export interface Picture {
   path: string;
@@ -14,9 +15,12 @@ export class ProjectCardComponent implements OnInit {
   @Input() pictures: Picture[] = []
   @Input() projectName: string = ""
 
-  constructor() { }
+  constructor(private imageViewerService: ImageViewerService) { }
 
   ngOnInit(): void {
   }
 
+  openPicture(path: string) {
+    this.imageViewerService.openImage(path)
+  }
 }

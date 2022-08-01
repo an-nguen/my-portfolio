@@ -92,3 +92,19 @@ $default-font-size: 16px;
     padding: 0.5em $default-mobile-padding;
   }
 }
+
+.image-viewer {
+  position: fixed;
+  display: none;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  &.opened {
+    display: block;
+    align-content: center;
+    justify-content: center;
+    background-color: darkgrey;
+    opacity: 0.7;
+  }
+}

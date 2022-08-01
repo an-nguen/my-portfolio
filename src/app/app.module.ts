@@ -8,6 +8,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { AboutComponent } from './about/about.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { ImageViewerContainerComponent } from './image-viewer-container/image-viewer-container.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { CdkMenuModule } from '@angular/cdk/menu';
     ProjectListComponent,
     AboutComponent,
     MainViewComponent,
-
+    ImageViewerContainerComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
