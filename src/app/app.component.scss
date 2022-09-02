@@ -2,6 +2,10 @@
 $default-padding: 15vh;
 $default-mobile-padding: 2em;
 $default-font-size: 16px;
+$default-footer-height: 80px;
+
+$app-primary-color: #fdaa70;
+$app-on-primary-color: #fff5f5;
 
 .app-bar {
   display: flex;
@@ -13,8 +17,8 @@ $default-font-size: 16px;
 
   height: 64px;
   padding: 0 $default-padding;
-  color: white;
-  background-color: #fdaa70;
+  color: $app-on-primary-color;
+  background-color: $app-primary-color;
   scroll-behavior: unset;
   overflow: hidden;
   letter-spacing: 0.1em;
@@ -29,11 +33,24 @@ $default-font-size: 16px;
     display: flex;
     align-items: center;
     padding: 0 1em;
+    transition: background-color 100ms ease-out ;
   }
 
   .app-nav-link:hover {
     background-color: rgba(0, 0, 0, 0.15);
   }
+}
+
+.footer {
+  display: flex;
+  font-weight: 600;
+  font-size: 16px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: $app-on-primary-color;
+  background-color: $app-primary-color;
+  height: $default-footer-height;
 }
 
 .title {
@@ -44,6 +61,7 @@ $default-font-size: 16px;
 .main {
   line-height: 1.5em;
   letter-spacing: 0.03em;
+  min-height: 90vh;
   font-size: $default-font-size;
   padding: 0.5em $default-padding;
 }
@@ -81,7 +99,6 @@ $default-font-size: 16px;
 
 .nav-menu-item:hover {
   background-color: rgba(0, 0, 0, 0.15);
-
 }
 
 @media (max-width: 640px) {
