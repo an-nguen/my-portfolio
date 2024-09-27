@@ -1,21 +1,23 @@
-import { Component, ContentChild, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { ImageViewerService } from './image-viewer.service';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
 
-  title = 'my-portfolio';
+  public title: string = 'my-portfolio';
 
-  layoutChanges?: Observable<BreakpointState>;
+  public layoutChanges!: Observable<BreakpointState>;
 
-  constructor(private breakpointObserver: BreakpointObserver,
-              private imageViewerService: ImageViewerService) {
+  constructor(
+    breakpointObserver: BreakpointObserver,
+  ) {
     this.layoutChanges = breakpointObserver.observe([
       Breakpoints.XSmall,
     ]);

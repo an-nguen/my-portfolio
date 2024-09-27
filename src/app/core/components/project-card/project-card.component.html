@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="project-title">Проект - {{ projectName() }}</div>
+  <div class="section-desc">
+    <ng-content></ng-content>
+  </div>
+  <div class="section-pictures">
+    @for (pic of pictures(); track $index) {
+      <div class="image-container">
+        <img (click)="openPicture(pic.path)"
+             width="800px"
+             style="cursor: pointer"
+             [src]="pic.path"
+             alt="Здесь должно быть изображение" />
+        <span class="image-description">
+          {{ pic.description }}
+        </span>
+      </div>
+    }
+  </div>
+</div>

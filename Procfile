@@ -1,1 +1,1 @@
-web: npm run serve:ssr
+web: yarn serve:ssr:my-portfolio
