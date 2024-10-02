@@ -15,33 +15,33 @@ export class ProjectListComponent {
 
   public tagRprtPics: Picture[] = [
     {
-      path: 'assets/TagReporterRZ0.png',
+      path: 'TagReporterRZ0.png',
       description: 'Внешний вид',
     },
     {
-      path: 'assets/TagReporterRZ1.png',
+      path: 'TagReporterRZ1.png',
       description: 'График',
     },
     {
-      path: 'assets/TagReporterRZ3.png',
+      path: 'TagReporterRZ3.png',
       description: 'Пример отчёта (рабочая таблица - График)',
     },
     {
-      path: 'assets/TagReporterRZ2.png',
+      path: 'TagReporterRZ2.png',
       description: 'Пример отчёта (рабочая таблица - Данные)',
     },
   ];
   public bgBudgetPictures: Picture[] = [
     {
-      path: 'assets/BGTrading0.png',
+      path: 'BGTrading0.png',
       description: 'Страница с бюджетом компании',
     },
     {
-      path: 'assets/BGTrading1.png',
+      path: 'BGTrading1.png',
       description: 'Окно входа',
     },
     {
-      path: 'assets/BGTrading2.png',
+      path: 'BGTrading2.png',
       description: 'Главная страница',
     },
   ];

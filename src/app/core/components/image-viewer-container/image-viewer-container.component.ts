@@ -1,34 +1,35 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { ImageViewerService } from '../../services/image-viewer.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
+  imports: [
+    CommonModule,
+  ],
   selector: 'app-image-viewer-container',
   templateUrl: './image-viewer-container.component.html',
   styleUrls: ['./image-viewer-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ImageViewerContainerComponent implements OnInit {
-  src: string | undefined;
-  opened: boolean = false;
+export class ImageViewerContainerComponent {
+  public src = signal<string | undefined>(undefined);
+  public opened = signal<boolean>(false);
 
-  constructor(private readonly imageViewerService: ImageViewerService) {
+  constructor(imageViewerService: ImageViewerService) {
     imageViewerService.setContainer(this)
   }
 
-  ngOnInit(): void {
+  public open(): void {
+    this.opened.set(true);
   }
 
-  open() {
-    this.opened = true;
-  }
-
-  close(ev: MouseEvent) {
+  public close(ev: MouseEvent): void {
     if (ev.button === 0)
-      this.opened = false;
+      this.opened.set(false);
   }
 
-  setImagePath(path: string) {
-    this.src = path;
+  public setImagePath(path: string): void {
+    this.src.set(path);
   }
 }

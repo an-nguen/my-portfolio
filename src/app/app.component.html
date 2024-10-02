@@ -1,23 +1,19 @@
 <div class="app-bar">
   <a routerLink="">
     <span class="title" style="display: flex; align-items: center">
-      <span class="material-icons-outlined" style="margin-right: 0.5em">
-        work_outline
-      </span>
-      Портфолио Ан</span
-    >
+      MY_PORTFOLIO
+    </span>
   </a>
   <div class="spacer"></div>
-  <ng-container *ngIf="!(layoutChanges | async)?.matches; else matches">
+  @if (!isSmallScreen()) {
     <a routerLink="/projects" class="app-nav-link">
       <span>Мои проекты</span>
     </a>
-  </ng-container>
-  <ng-template #matches>
+  } @else {
     <button class="menu-button" [cdkMenuTriggerFor]="navMenu">
       <span class="material-icons-outlined">menu</span>
     </button>
-  </ng-template>
+  }
   <ng-template #navMenu>
     <div class="nav-menu" cdkMenu>
       <button class="nav-menu-item" routerLink="projects" cdkMenuItem>
@@ -25,11 +21,8 @@
       </button>
     </div>
   </ng-template>
-  <app-image-viewer-container></app-image-viewer-container>
 </div>
+<app-image-viewer-container></app-image-viewer-container>
 <div class="main">
   <router-outlet></router-outlet>
-</div>
-<div class="footer">
-  <p>Powered by Angular 14. 2022</p>
 </div>

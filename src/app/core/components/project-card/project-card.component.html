@@ -7,14 +7,14 @@
     @for (pic of pictures(); track $index) {
       <div class="image-container">
         <img (click)="openPicture(pic.path)"
-             width="800px"
              style="cursor: pointer"
-             [src]="pic.path"
-             alt="Здесь должно быть изображение" />
-        <span class="image-description">
-          {{ pic.description }}
-        </span>
+             [ngSrc]="pic.path"
+             alt="Здесь должно быть изображение"
+             fill />
       </div>
+      <span class="image-description">
+        {{ pic.description }}
+      </span>
     }
   </div>
 </div>

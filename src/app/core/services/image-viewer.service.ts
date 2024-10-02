@@ -6,18 +6,17 @@ import { ImageViewerContainerComponent } from '@core/components/image-viewer-con
 })
 export class ImageViewerService {
 
-  private container: ImageViewerContainerComponent | undefined
+  private container!: ImageViewerContainerComponent;
 
-  constructor() { }
-
-  public setContainer(container: ImageViewerContainerComponent) {
+  public setContainer(container: ImageViewerContainerComponent): void {
     this.container = container;
   }
 
-  public openImage(path: string) {
-    if (this.container == undefined) return
-    this.container.setImagePath(path)
-    this.container.open()
+  public openImage(path: string): void {
+    if (this.container == undefined)
+      return;
+    this.container.setImagePath(path);
+    this.container.open();
   }
 
 }

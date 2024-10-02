@@ -1,10 +1,10 @@
-<div class="container" [ngClass]="{ opened: opened }">
+<div class="container" [ngClass]="{ opened: opened() }">
   <span style="z-index: 1000">
-    <img style="width: 75vw" [src]="src" alt="Нет изображения" />
+    <img style="width: 75vw"
+         [src]="src()"
+         alt="Нет изображения" />
   </span>
-  <div
-    class="backdrop"
-    [ngClass]="{ opened: opened }"
-    (click)="close($event)"
-  ></div>
+  <div class="backdrop"
+       [ngClass]="{ opened: opened() }"
+       (click)="close($event)"></div>
 </div>

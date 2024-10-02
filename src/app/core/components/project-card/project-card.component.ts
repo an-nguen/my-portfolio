@@ -1,3 +1,4 @@
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, Input, OnInit, signal } from '@angular/core';
 import { ImageViewerService } from '@core/services/image-viewer.service';
 
@@ -8,6 +9,10 @@ export interface Picture {
 
 @Component({
   standalone: true,
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+  ],
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss'],

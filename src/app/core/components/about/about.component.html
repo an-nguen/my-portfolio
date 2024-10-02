@@ -1,43 +1,23 @@
-<h2 class="profile-title">О себе</h2>
 <div class="description">
-  Меня зовут <b>Ан</b>. Мне <b>{{ getYearOld() }}</b>. Живу в Ульяновске. Учился в Ульяновском государственном
-  техническом
-  университете (УлГТУ) на специальность "Информационные системы и технологии".
-  Начал программировать с 16 лет с книги "Язык программирования С" Б.В.
-  Керниган, Д.М. Ричи. Также программированию учился сам по статьям от ресурсов
-  посвященных программированию. Нравится изучать новые технологии в IT сфере.
-  Люблю читать статьи и новости с Хабра. <br />
-  При написании програм придерживаюсь таких правил:
-  <ul>
-    <li>
-      Писать простой код с понятными названии переменных, методов, функции в
-      соответствии с общепринятыми стилем используемый ЯП
-    </li>
-    <li>Использовать готовые решения/библиотеки по мере возможностей</li>
-    <li>
-      Сложные участки кода комментировать либо переносить в отдельный
-      метод/функцию. Также если есть повторения в коде использую шаблоны ООП
-      либо вывожу в отдельную функцию (Рефакторинг)
-    </li>
-  </ul>
-  Знаком с языками программирования:
-  <ul>
-    @for (lang of languages; track $index) {
-      <li>{{ lang.name }}</li>
-    }
-  </ul>
-</div>
-<div class="workplaces">
-  <h4>Места работы</h4>
-  <ul>
-    <li>АО "Доминанта-сервис" - с октября 2019 до августа 2022</li>
-  </ul>
-</div>
+  <div class="personal-card">
+    <div class="main">
+      <pre><code [highlight]="code" language="typescript">
+      </code></pre>
 
-<div class="refs">
-  <h4 style="margin: 0">Ссылки на мои репозиторий</h4>
-  <ul>
-    <li><a href="https://github.com/an-nguen">GitHub</a></li>
-    <li><a href="https://gitlab.com/an-ng">GitLab</a></li>
-  </ul>
+      <div class="code-block">
+        <pre><code highlight="const repos = [" language="typescript"></code></pre>
+        @for (repo of REPOS; track $index) {
+          <pre><code class="hljs">  {{ "{" }} <span class="hljs-attr">name</span>: "<img class="icon" [src]="repo.icon" alt="No image"/>{{ repo.name }}", <span class="hljs-attr">link</span>: "<a [href]="repo.link">{{ repo.link }}</a>" {{ "}," }}</code></pre>
+        }
+        <pre><code highlight="];" language="typescript"></code></pre>
+      </div>
+
+      <a class="interactive" (click)="contactMe()">
+        <div class="code-block">
+          <pre><code [highlight]="contactMeCode" language="typescript">
+        </code></pre>
+        </div>
+      </a>
+    </div>
+  </div>
 </div>

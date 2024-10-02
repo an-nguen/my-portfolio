@@ -1,1 +1,1 @@
-web: yarn serve:ssr:my-portfolio
+web: yarn & yarn serve:ssr:my-portfolio
