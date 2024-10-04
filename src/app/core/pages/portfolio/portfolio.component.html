@@ -1,0 +1,37 @@
+<div class="description">
+  <div class="personal-card">
+    <audio #audio [src]="LC_AIRHORN_SND_LINK" style="display: none;"></audio>
+    <div class="main">
+      <pre><code [highlight]="code" language="typescript">
+      </code></pre>
+
+      <div class="code-block">
+        <pre><code highlight="  public repos: Repository[] = [" language="typescript"></code></pre>
+        @for (repo of repos; track $index) {
+          <pre><code class="hljs">  {{ "  {" }} <span class="hljs-attr">label</span>: "<img class="icon" [src]="repo.icon" alt="No image"/>{{ repo.label }}", <span class="hljs-attr">link</span>: "<a [href]="repo.link">{{ repo.link }}</a>" {{ "}," }}</code></pre>
+        }
+        <pre><code highlight="  ];" language="typescript"></code></pre>
+      </div>
+      <pre><code [highlight]="constructorCode" language="typescript">
+      </code></pre>
+      <a class="interactive" title="Run method" (click)="playLCHorn()">
+        <div class="code-block">
+          <pre><code [highlight]="playLCHornCode" language="typescript">
+        </code></pre>
+        </div>
+      </a>
+      <a class="interactive" title="Run method" (click)="runInfiniteLoop()">
+        <div class="code-block">
+          <pre><code [highlight]="infiniteLoopCode" language="typescript">
+        </code></pre>
+        </div>
+      </a>
+      <a class="interactive" title="Run method" (click)="contactMe()">
+        <div class="code-block">
+          <pre><code [highlight]="contactMeCode" language="typescript">
+        </code></pre>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

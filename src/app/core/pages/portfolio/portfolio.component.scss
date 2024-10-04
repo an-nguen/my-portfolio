@@ -23,7 +23,9 @@
 }
 
 pre code {
+  font-size: 15px;
   font-family: "JetBrains Mono", "Cascadia Mono", monospace !important;
+  overflow-x: hidden;
 }
 
 .code-block {
