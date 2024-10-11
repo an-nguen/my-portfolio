@@ -1,5 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
+import httpProxy from 'http-proxy';
 import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
@@ -11,7 +12,7 @@ export function app(): express.Express {
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
-
+  const proxy = httpProxy.createProxyServer();
   const commonEngine = new CommonEngine();
 
   server.set('view engine', 'html');
@@ -20,6 +21,10 @@ export function app(): express.Express {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
+  server.get('/gtm.js', (req, res, next) => {
+    proxy.web(req, res, { target: `https://www.googletagmanager.com`, changeOrigin: true }, (e) => next(e));
+  });
+
   server.get('**', express.static(browserDistFolder, {
     maxAge: '1y',
     index: 'index.html',

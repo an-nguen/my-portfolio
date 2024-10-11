@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, EnvironmentInjector, NgZone, OnInit, runInInjectionContext, viewChild } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
 import { Highlight } from 'ngx-highlightjs';
 
 interface PersonalInfo {
@@ -135,7 +135,7 @@ export class PortfolioComponent {
 /* My portfolio as a code in Angular + TypeScript */
 
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
 import { Highlight } from 'ngx-highlightjs';
 
 interface PersonalInfo {

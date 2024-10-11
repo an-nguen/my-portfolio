@@ -1,0 +1,6 @@
+{
+  "/gtm.js": {
+      "target": "https://www.googletagmanager.com",
+      "changeOrigin": true
+  }
+}
