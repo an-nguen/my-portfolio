@@ -32,10 +32,14 @@ export class GTMService {
   public addGTMScript(): void {
     afterNextRender({
       write: () => {
+        if (this._isLoadedSubj.getValue()) {
+          return;
+        }
+
         this.pushOnDataLayer({
           'gtm.start': new Date().getTime(),
           event: 'gtm.js'
-        })
+        });
 
         const gtmScript: HTMLScriptElement = this._doc.createElement('script');
         gtmScript.id = GTM_SCRIPT_EL_ID;

@@ -7,6 +7,8 @@ import { ImageViewerContainerComponent } from '@core/components/image-viewer-con
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GTMService } from '@core/services/gtm.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   standalone: true,
@@ -16,7 +18,8 @@ import { GTMService } from '@core/services/gtm.service';
     CdkMenuTrigger,
     ImageViewerContainerComponent,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    FontAwesomeModule,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,6 +27,8 @@ import { GTMService } from '@core/services/gtm.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
+
+  public readonly menuIcon = faBars;
 
   public title: string = 'my-portfolio';
 

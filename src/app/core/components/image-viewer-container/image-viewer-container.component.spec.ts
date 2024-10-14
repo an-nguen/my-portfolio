@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImageViewerContainerComponent } from './image-viewer-container.component';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 describe('ImageViewerContainerComponent', () => {
   let component: ImageViewerContainerComponent;
@@ -8,13 +9,14 @@ describe('ImageViewerContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImageViewerContainerComponent ]
-    })
-    .compileComponents();
+      imports: [ImageViewerContainerComponent],
+      providers: [provideExperimentalZonelessChangeDetection()]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ImageViewerContainerComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
+    component = fixture.componentInstance;
+    await fixture.whenStable();
   });
 
   it('should create', () => {

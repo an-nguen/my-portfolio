@@ -1,35 +1,40 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideDocument } from '@core/providers/document';
+import { provideWindow } from '@core/providers/window';
+import { GTM_ID_TOKEN } from '@core/constants';
+import { provideRouter } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        AppComponent,
       ],
-      declarations: [
-        AppComponent
-      ],
+      providers: [
+        provideExperimentalZonelessChangeDetection(),
+        provideRouter([]),
+        provideDocument(),
+        provideWindow(),
+        { provide: GTM_ID_TOKEN, useValue: '' }
+      ]
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('should create the app', async () => {
     const fixture = TestBed.createComponent(AppComponent);
+    await fixture.whenStable();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'my-portfolio'`, () => {
+  it(`should have as title 'my-portfolio'`, async () => {
     const fixture = TestBed.createComponent(AppComponent);
+    await fixture.whenStable();
     const app = fixture.componentInstance;
     expect(app.title).toEqual('my-portfolio');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('my-portfolio app is running!');
-  });
 });

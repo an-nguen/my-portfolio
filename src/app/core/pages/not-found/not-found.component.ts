@@ -10,4 +10,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class NotFoundComponent {
 
+  public readonly NOT_FOUND_TEXT: string = 'Page not found';
+
 }
