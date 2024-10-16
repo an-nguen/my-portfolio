@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -53,4 +55,9 @@ pre code.hljs {
 
 .interactive {
   cursor: pointer;
+
+  &:hover {
+    border-radius: 24px;
+    filter: brightness(95%);
+  }
 }

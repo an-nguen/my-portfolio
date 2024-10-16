@@ -1,5 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --text-color: #abb2bf;
+  --bg-color: #282c34;
+}
+
 body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
   margin: 0;
   font-family: "JetBrains Mono", "Cascadia Mono", monospace !important;
 }

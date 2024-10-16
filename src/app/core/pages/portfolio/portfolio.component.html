@@ -14,6 +14,16 @@
       </div>
       <pre><code [highlight]="constructorCode" language="typescript">
       </code></pre>
+      <a class="interactive" title="Run method" (click)="printPhoneNumber()">
+        <div class="code-block">
+          <pre><code [highlight]="printPhoneNumberCode" language="typescript">
+        </code></pre>
+        </div>
+      </a>
+      <pre class="phone-num-container"
+           [style.display]="!phoneNumberContent() ? 'none' : 'block'">
+      {{ phoneNumberContent() }}
+      </pre>
       <a class="interactive" title="Run method" (click)="playLCHorn()">
         <div class="code-block">
           <pre><code [highlight]="playLCHornCode" language="typescript">
@@ -32,6 +42,9 @@
         </code></pre>
         </div>
       </a>
+
+      <pre><code [highlight]="'}'" language="typescript">
+      </code></pre>
     </div>
   </div>
 </div>

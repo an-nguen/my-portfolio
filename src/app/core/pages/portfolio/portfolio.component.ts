@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, signal, viewChild } from '@angular/core';
+import { printArray, printObject } from '@core/print';
 import { Highlight } from 'ngx-highlightjs';
 
 interface PersonalInfo {
@@ -27,40 +29,6 @@ interface WorkPlace {
   end: string;
 }
 
-function enumProps<T>(obj: T) {
-  let index = 0;
-  const props = [];
-  for (const key in obj) {
-    props.push({ key, value: obj[key], index });
-    index += 1;
-  }
-  return props;
-}
-
-function printObject<T>(obj: T, spaceSize: number = 2) {
-  let print = "";
-  let indentStr = "";
-  for (let i = 0; i < spaceSize; i++) {
-    indentStr += " ";
-  }
-  const objectProps = enumProps(obj);
-  for (const { key, value, index } of objectProps) {
-    let dispValue: any = value;
-    if (typeof value === 'string') {
-      if (!value.includes('\n') && !value.includes('"')) {
-        dispValue = `"${value}"`;
-      } else {
-        dispValue = `\`${value}\``
-      }
-    }
-    print += `${indentStr}${key}: ${dispValue}`
-    if (index !== objectProps.length - 1) {
-      print += ',\n';
-    }
-  }
-  return print;
-}
-
 @Component({
   standalone: true,
   imports: [
@@ -75,6 +43,8 @@ function printObject<T>(obj: T, spaceSize: number = 2) {
 export class PortfolioComponent {
 
   public readonly LC_AIRHORN_SND_LINK = "AirHorn1.wav";
+
+  public readonly FAVORITE_PL = "Rust";
 
   public audioElRef = viewChild<ElementRef<HTMLAudioElement>>("audio");
 
@@ -129,6 +99,15 @@ export class PortfolioComponent {
     }
   ];
 
+  public interests: string[] = [
+    "играть с микроконтроллером и паять их",
+    "компуктерные игры",
+    "копаться в Linux",
+    "программирование компьютерной графики (Vulkan, OpenGL)",
+  ];
+
+  public phoneNumberContent = signal<string>('');
+
   public audioCtx!: AudioContext;
 
   public code = `
@@ -176,19 +155,25 @@ export class PortfolioComponent {
 
   public readonly LC_AIRHORN_SND_LINK = "AirHorn1.wav";
 
+  public readonly FAVORITE_PL = "${this.FAVORITE_PL}";
+
   public audioElRef = viewChild<ElementRef<HTMLAudioElement>>("audio");
 
   public personalInfo: PersonalInfo = {
 ${printObject(this.personalInfo, 4)}
   };
 
+  public interests: string[] = [
+${printArray(this.interests, 4)}
+  ];
+
   public contactEmail: string = '${this.contactEmail}';
 
   public langs: Language[] = [${this.langs.map((lang) => `\n    { name: "${lang.name}", level: "${lang.level}" }`)}
   ];
 
-  public progLangs: string[] = [\
-    ${this.progLangs.map((lang) => `\n    "${lang}"`)}
+  public progLangs: string[] = [
+${printArray(this.progLangs, 4)}
   ];
 
   public workPlaces: WorkPlace[] = [{
@@ -207,8 +192,11 @@ ${this.workPlaces.map((workPlace) => printObject(workPlace, 4))}
       }
       const audioEl = audioRef.nativeElement;
       this.audioCtx = new AudioContext();
+      const gainNode = this.audioCtx.createGain();
       const track = this.audioCtx.createMediaElementSource(audioEl);
-      track.connect(this.audioCtx.destination);
+      gainNode.gain.value = 2;
+      track.connect(gainNode)
+        .connect(this.audioCtx.destination);
     });
   }`;
 
@@ -220,9 +208,7 @@ ${this.workPlaces.map((workPlace) => printObject(workPlace, 4))}
   public contactMeCode = `
   public contactMe(): void {
     window.location.href = \`mailto:\${this.contactEmail}\`;
-  }
-
-}`;
+  }`;
 
   public playLCHornCode = `
   public playLCHorn(): void {
@@ -239,7 +225,18 @@ ${this.workPlaces.map((workPlace) => printObject(workPlace, 4))}
     audioEl.play();
   }`;
 
-  constructor() {
+  public printPhoneNumberCode = `
+  public printPhoneNumber(): void {
+    this._httpClient.get('PhoneNumber.txt', { responseType: 'text' })
+      .subscribe((phoneNumberBase64) => {
+        this.phoneNumberContent.set(atob(phoneNumberBase64));
+      });
+  }
+  `;
+
+  constructor(
+    private readonly _httpClient: HttpClient,
+  ) {
     afterNextRender(() => {
       const audioRef = this.audioElRef();
       if (!audioRef || !audioRef.nativeElement) {
@@ -253,6 +250,13 @@ ${this.workPlaces.map((workPlace) => printObject(workPlace, 4))}
       track.connect(gainNode)
         .connect(this.audioCtx.destination);
     });
+  }
+
+  public printPhoneNumber(): void {
+    this._httpClient.get('PhoneNumber.txt', { responseType: 'text' })
+      .subscribe((phoneNumberBase64) => {
+        this.phoneNumberContent.set(atob(phoneNumberBase64));
+      });
   }
 
   public playLCHorn(): void {

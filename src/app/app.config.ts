@@ -7,10 +7,12 @@ import { environment } from '../environments/environment';
 import { provideWindow } from '@core/providers/window';
 import { provideDocument } from '@core/providers/document';
 import { GTM_ID_TOKEN, GTM_URL_TOKEN } from '@core/constants';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
+    provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
     provideClientHydration(),
     provideHighlightOptions({
@@ -20,7 +22,8 @@ export const appConfig: ApplicationConfig = {
         typescript: () => import('highlight.js/lib/languages/typescript'),
         css: () => import('highlight.js/lib/languages/css'),
         xml: () => import('highlight.js/lib/languages/xml')
-      }
+      },
+      themePath: 'atom-one-dark.min.css'
     }),
     { provide: GTM_ID_TOKEN, useValue: environment.gtmId },
     { provide: GTM_URL_TOKEN, useValue: environment.gtmUrl },
