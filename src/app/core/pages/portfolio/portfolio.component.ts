@@ -100,10 +100,9 @@ export class PortfolioComponent {
   ];
 
   public interests: string[] = [
-    "играть с микроконтроллером и паять их",
-    "компуктерные игры",
-    "копаться в Linux",
+    "программирование микроконтроллеров",
     "программирование компьютерной графики (Vulkan, OpenGL)",
+    "компьютерные игры"
   ];
 
   public phoneNumberContent = signal<string>('');
