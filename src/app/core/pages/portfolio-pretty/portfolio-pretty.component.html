@@ -1,0 +1,84 @@
+<section id="personal-card">
+  <img id="avatar" [src]="avatarImg" alt="No avatar :(" />
+  <div id="personal-info">
+    <span class="name">{{ name }}</span>
+    <span class="birthdate">{{ birthDate }}</span>
+    <span class="living-place">{{ livingPlace }}</span>
+    <a [href]="'mailto:' + email">
+      <fa-icon class="icon" [icon]="faEnvelope"></fa-icon>{{ email }}
+    </a>
+  </div>
+</section>
+<section id="about">
+  <h2>About</h2>
+  <p>
+    Меня зовут Ан. Проживаю в городе Ульяновск.
+    Программированием и компьютерами начал интересоваться в 16-17 лет. Первым языком программирования (ЯП) был C.
+    В дальнейшем ознакомился с другими ЯП - Java, C#, JavaScript, TypeScript, x86 asm, Python, Rust.
+  </p>
+</section>
+<section id="resume">
+  <h3>
+    Interests
+  </h3>
+  <div>
+    <ul>
+      @for (interest of interests; track $index) {
+        <li>{{ interest }}</li>
+      }
+    </ul>
+  </div>
+
+  <h3>
+    Work History
+  </h3>
+  <div class="row-val">
+    @for (work of works; track $index) {
+      <div class="record">
+        <b class="company-name">{{ work.companyName }}</b>
+        <span class="occupation">{{ work.occupation }}</span>
+        <i class="period">{{ work.start + ' - ' + work.end }}</i>
+      </div>
+    }
+  </div>
+
+  <h3>
+    Education
+  </h3>
+  <div class="row-val">
+    <div class="record">
+      <b class="institution-name">{{ education.institutionName }}</b>
+      <i class="graduation-date">{{ education.graduationDate }}</i>
+    </div>
+  </div>
+
+  <h3>Languages</h3>
+  <div class="row-val">
+    @for (lang of langs; track $index) {
+      <div class="record">
+        <b>{{lang.name}}</b>
+        <i>{{lang.level}}</i>
+      </div>
+    }
+  </div>
+
+  <h3>Projects</h3>
+  <div class="row-val">
+    TODO
+  </div>
+
+  <h3>
+    Contacts
+  </h3>
+  <div class="row-val">
+    <a [href]="'mailto:' + email">
+      <fa-icon class="icon" [icon]="faEnvelope"></fa-icon>{{ email }}
+    </a>
+    @for (repo of repos; track $index) {
+      <a [href]="repo.link">
+        <img class="icon" [src]="repo.icon" />{{repo.label}}
+      </a>
+    }
+  </div>
+
+</section>

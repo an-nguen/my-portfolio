@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, signal, viewChild } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, ElementRef, Inject, signal, viewChild } from '@angular/core';
 import { printArray, printObject } from '@core/print';
 import { Highlight } from 'ngx-highlightjs';
 
@@ -32,7 +31,6 @@ interface WorkPlace {
 @Component({
   standalone: true,
   imports: [
-    CommonModule,
     Highlight,
   ],
   selector: 'app-portfolio',
@@ -234,7 +232,7 @@ ${this.workPlaces.map((workPlace) => printObject(workPlace, 4))}
   `;
 
   constructor(
-    private readonly _httpClient: HttpClient,
+    @Inject(HttpClient) private readonly _httpClient: HttpClient,
   ) {
     afterNextRender(() => {
       const audioRef = this.audioElRef();
